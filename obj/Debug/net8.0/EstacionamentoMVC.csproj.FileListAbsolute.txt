@@ -130,3 +130,4 @@ C:\dev\.net\EstacionamentoMVC\obj\Debug\net8.0\EstacionamentoMVC.genruntimeconfi
 C:\dev\.net\EstacionamentoMVC\obj\Debug\net8.0\ref\EstacionamentoMVC.dll
 C:\dev\.net\EstacionamentoMVC\bin\Debug\net8.0\MySqlConnector.dll
 C:\dev\.net\EstacionamentoMVC\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\dev\.net\EstacionamentoMVC\obj\Debug\net8.0\EstacionamentoMVC.sourcelink.json

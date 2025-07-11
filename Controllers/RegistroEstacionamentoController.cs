@@ -6,6 +6,7 @@ using EstacionamentoMVC.Context;
 using EstacionamentoMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace EstacionamentoMVC.Controllers
 {
@@ -20,13 +21,14 @@ namespace EstacionamentoMVC.Controllers
 
         public IActionResult Index()
         {
+            var veiculos = _context.Veiculos.AsQueryable();
             ViewBag.Veiculos = _context.Veiculos.ToList();
             var estacionamento = _context.RegistroEstacionamento.ToList();
             return View(estacionamento);
         }
 
         [HttpPost]
-        public IActionResult Index(int veiculoId)
+        public IActionResult Index(int? veiculoId)
         {
             var v = _context.Veiculos.Find(veiculoId);
 
@@ -48,6 +50,19 @@ namespace EstacionamentoMVC.Controllers
         public IActionResult Validar()
         {
             return View();
+        }
+
+        public IActionResult PesquisarPorPlaca(string placa)
+        {
+            var veiculo = _context.Veiculos
+                .FirstOrDefault(p => p.Placa.Contains(placa));
+
+            if (veiculo != null)
+            {
+                return RedirectToAction("ValidarEstacionamento", new { veiculoId = veiculo.Id });
+            }
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult ValidarEstacionamento(int veiculoId)
