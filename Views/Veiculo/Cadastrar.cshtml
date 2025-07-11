@@ -1,0 +1,25 @@
+@model EstacionamentoMVC.Models.Veiculo;
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<a class="btn btn-primary" asp-action="Index">Voltar</a>
+<h1 style="margin-top: 2rem;">Cadastro</h1>
+
+<form asp-action="Cadastrar">
+  <div class="mb-3">
+    <label asp-for="Marca" class="form-label">Marca</label>
+    <input class="form-control" asp-for="Marca">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Modelo" class="form-label">Modelo</label>
+    <input class="form-control" asp-for="Modelo">
+  </div>
+    <div class="mb-3"></div>
+    <label asp-for="Placa" class="form-label">Placa</label>
+    <input class="form-control" asp-for="Placa">
+  </div>
+
+   <input type="submit" value="Criar" class="btn btn-primary"/>
+</form>

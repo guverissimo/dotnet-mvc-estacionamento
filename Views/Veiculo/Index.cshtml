@@ -1,0 +1,92 @@
+@model IEnumerable<EstacionamentoMVC.Models.Veiculo>
+
+@{
+    ViewData["Title"] = "Veículos";
+}
+
+<a asp-controller="Home" asp-action="Index">Pagina inicial</a>
+<h1>Veículos</h1>
+
+<div class="text-center mb-3">
+    <a asp-action="Cadastrar" class="btn btn-primary">+ Cadastrar</a>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Id)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Marca)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Modelo)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Placa)</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td>@v.Id</td>
+                    <td>@v.Marca</td>
+                    <td>@v.Modelo</td>
+                    <td>@v.Placa</td>
+                    <td>
+                        <form asp-action="Deletar" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@v.Id" />
+                            <input type="submit" value="Excluir" class="btn btn-danger btn-sm" />
+                        </form>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarModal-@v.Id">
+                            Editar
+                        </button>
+                        <div class="modal fade" id="editarModal-@v.Id" tabindex="-1" aria-labelledby="editarModalLabel-@v.Id"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form asp-action="Editar" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editarModalLabel-@v.Id">Editar Veículo</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Fechar"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" name="Id" value="@v.Id" />
+                                            <div class="mb-3">
+                                                <label>Marca</label>
+                                                <input type="text" name="Marca" class="form-control" value="@v.Marca" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Modelo</label>
+                                                <input type="text" name="Modelo" class="form-control" value="@v.Modelo" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Placa</label>
+                                                <input type="text" name="Placa" class="form-control" value="@v.Placa" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="text-center mt-4">
+        <p>Não há veiculos cadastrados</p>
+    </div>
+}

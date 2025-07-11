@@ -1,0 +1,28 @@
+@model EstacionamentoMVC.Models.ConfiguracaoEstacionamento
+
+@{
+    ViewData["Title"] = "Configuracao";
+}
+
+<h1>Configuração</h1>
+
+<form asp-action="Atualizar" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="ValorPorHora" class="form-label"></label>
+        <input asp-for="ValorPorHora" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ValorMensalidade" class="form-label"></label>
+        <input asp-for="ValorMensalidade" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ValorInicial" class="form-label"></label>
+        <input asp-for="ValorInicial" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

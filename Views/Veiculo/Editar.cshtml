@@ -1,0 +1,25 @@
+@model EstacionamentoMVC.Models.Veiculo;
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<a class="btn btn-primary" asp-action="Index">Voltar</a>
+<h1>Editar</h1>
+
+<form asp-action="Editar">
+  <div class="mb-3">
+    <label asp-for="Marca" class="form-label">Marca</label>
+    <input class="form-control" asp-for="Marca">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Modelo" class="form-label">Modelo</label>
+    <input class="form-control" asp-for="Modelo">
+  </div>
+    <div class="mb-3"></div>
+    <label asp-for="Placa" class="form-label">Placa</label>
+    <input class="form-control" asp-for="Placa">
+  </div>
+
+   <input type="submit" value="Editar" class="btn btn-primary"/>
+</form>
